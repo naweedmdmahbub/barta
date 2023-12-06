@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('layout.master');
 });
+
+
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
+
+
+Route::post('/register', [RegisterController::class, 'register'])->name('register.user');
+
+Route::get('/profile', [UserController::class, 'index']);
+Route::get('/profile/edit/{id}', [UserController::class, 'edit']);
+
