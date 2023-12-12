@@ -16,12 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('dashboard');
-Route::get('/single', function () { return view('single'); })->name('single');
-Route::get('/profile', function () { return view('profile'); })->name('profile');
-Route::get('/edit-profile', function () { return view('edit-profile'); })->name('edit-profile');
+// Route::get('/single', function () { return view('single'); })->name('single');
+// Route::get('/profile', function () { return view('profile'); })->name('profile');
+// Route::get('/edit-profile', function () { return view('edit-profile'); })->name('edit-profile');
 
 
 Route::get('/login', function () {
@@ -36,6 +33,12 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 Route::post('/login', [AuthController::class, 'login'])->name('authenticate');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Route::get('/profile', [ProfileController::class, 'index']);
-// Route::get('/profile/edit/{id}', [ProfileController::class, 'edit']);
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/', function () {
+        return view('index');
+    })->name('dashboard');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('/edit-profile', [ProfileController::class, 'edit'])->name('edit-profile');
+    Route::post('/update-profile', [ProfileController::class, 'update'])->name('update-profile');
+});
 

@@ -14,11 +14,9 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-        // dd('hi',$credentials);
  
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            // $value = session('key', 'default');
             return redirect()->to(RouteServiceProvider::HOME);
         }
  

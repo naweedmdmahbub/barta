@@ -19,7 +19,9 @@
 
           <!-- User Meta -->
           <div>
-            <h1 class="font-bold md:text-2xl">Ahmed Shamim Hasan Shaon</h1>
+            <h1 class="font-bold md:text-2xl">
+              {{ $profile->first_name. ' '.$profile->last_name }}
+            </h1>
             <p class="text-gray-700">Less Talk, More Code 💻</p>
           </div>
           <!-- / User Meta -->
@@ -45,7 +47,7 @@
 
         <!-- Edit Profile Button (Only visible to the profile owner) -->
         <a
-          href="./edit-profile.html"
+          href="{{ route('edit-profile') }}"
           type="button"
           class="-m-2 flex gap-2 items-center rounded-full px-4 py-2 font-semibold bg-gray-100 hover:bg-gray-200 text-gray-700">
           <svg
@@ -207,13 +209,13 @@
                 <a
                   href="profile.html"
                   class="hover:underline font-semibold line-clamp-1">
-                  Ahmed Shamim Hasan Shaon
+                  {{ $profile->first_name. ' '.$profile->last_name }}
                 </a>
 
                 <a
                   href="profile.html"
                   class="hover:underline text-sm text-gray-500 line-clamp-1">
-                  @me_shaon
+                  {{ $profile->email }}
                 </a>
               </div>
               <!-- /User Info -->
