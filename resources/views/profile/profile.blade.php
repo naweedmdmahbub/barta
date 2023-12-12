@@ -22,7 +22,7 @@
             <h1 class="font-bold md:text-2xl">
               {{ $profile->first_name. ' '.$profile->last_name }}
             </h1>
-            <p class="text-gray-700">Less Talk, More Code 💻</p>
+            <p class="text-gray-700">{{$profile->bio}}</p>
           </div>
           <!-- / User Meta -->
         </div>
